@@ -1,0 +1,57 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "HTTP_Test/1.0.0": {
+        "dependencies": {
+          "IronWebScraper": "4.0.4.3",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "HTTP_Test.dll": {}
+        }
+      },
+      "IronWebScraper/4.0.4.3": {
+        "runtime": {
+          "lib/net452/IronWebScraper.dll": {
+            "assemblyVersion": "4.0.4.29861",
+            "fileVersion": "4.0.4.3"
+          }
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.3.23909"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "HTTP_Test/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "IronWebScraper/4.0.4.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JzNIk/8QG5+aWSH1gH6cpfwn0XpHeONQ1gdNGSfgNebEnK1R5V+9vukMet7kdkMPVxgPukIDKBe32NrctqqUFg==",
+      "path": "ironwebscraper/4.0.4.3",
+      "hashPath": "ironwebscraper.4.0.4.3.nupkg.sha512"
+    },
+    "Newtonsoft.Json/12.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "path": "newtonsoft.json/12.0.3",
+      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
+    }
+  }
+}
