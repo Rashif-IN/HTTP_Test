@@ -6,43 +6,76 @@ using Newtonsoft.Json;
 using IronWebScraper;
 using System.Linq;
 using System.IO;
+using IronWebScraper;
+
+
 
 namespace HTTP_Test
 {
-
-    public class Result
+    public class Args
     {
-        public double popularity { get; set; }
-        public int id { get; set; }
-        public bool video { get; set; }
-        public int vote_count { get; set; }
-        public double vote_average { get; set; }
-        public string title { get; set; }
-        public string release_date { get; set; }
-        public string original_language { get; set; }
-        public string original_title { get; set; }
-        public List<int> genre_ids { get; set; }
-        public string backdrop_path { get; set; }
-        public bool adult { get; set; }
-        public string overview { get; set; }
-        public string poster_path { get; set; }
+
     }
 
-    public class RootObject4
+    public class Headers
     {
-        public int page { get; set; }
-        public int total_results { get; set; }
-        public int total_pages { get; set; }
-        public List<Result> results { get; set; }
+        public string Accept { get; set; }
+        public string Accept_Encoding { get; set; }
+        public string Accept_Language { get; set; }
+        public string Host { get; set; }
+        public string Sec_Fetch_Mode { get; set; }
+        public string Sec_Fetch_Site { get; set; }
+        public string Upgrade_Insecure_Requests { get; set; }
+        public string User_Agent { get; set; }
+        public string X_Amzn_Trace_Id { get; set; }
+    }
+
+    public class RootObject
+    {
+        public Args args { get; set; }
+        public Headers headers { get; set; }
+        public string origin { get; set; }
+        public string url { get; set; }
+    }
+
+    class Fethcer
+    {
+        //static HttpClient client = new HttpClient();
+
+        //public static async Task<List<RootObject>> Get(string url)
+        //{
+
+
+        //    var result = await client.GetStringAsync(url);
+
+        //    var get = JsonConvert.DeserializeObject<List<RootObject>>(result);
+
+        //    return get;
+        //}
+
+        //public static async Task<List<RootObject>> Delete(string url)
+        //{
+
+
+        //    var result = await client.GetStringAsync(url);
+
+        //    var del = JsonConvert.DeserializeObject<List<RootObject>>(result);
+
+        //    return del;
+        //}
     }
 
 
-    class Program
+    class Program 
     {
+        
         public static async Task Main(string[] args)
         {
 
-            NomerDua();
+            //var num1A = await Fethcer.Get("https://httpbin.org/get");
+            //var num1B = await Fethcer.Delete("https://httpbin.org/delete");
+
+            //NomerDua();
 
 
             //num3
@@ -64,7 +97,14 @@ namespace HTTP_Test
             var numFourDFile = JsonConvert.SerializeObject(numFourD);
             File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4D.json", numFourDFile);
 
+            //num5
+            var Num5 = new Kompas.BlogScrapper();
+            await Num5.StartAsync();
+
         }
+
+
+
         static async void NomerDua()
         {
             var numTwo = await Fetch();
@@ -146,14 +186,12 @@ namespace HTTP_Test
         {
 
             var client = new HttpClient();
-
             var result = await client.GetStringAsync("https://mul14.github.io/data/employees.json");
 
             var fet = JsonConvert.DeserializeObject<List<RootObject2>>(result);
 
             return fet;
         }
-
 
         public static async Task<List<RootObject3>> Join()
         {
@@ -216,7 +254,6 @@ namespace HTTP_Test
 
             return result;
         }
-
 
         public static async Task<string> movieIndonesia()
         {
