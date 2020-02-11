@@ -5,133 +5,88 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using IronWebScraper;
 using System.Linq;
+using System.IO;
 
 namespace HTTP_Test
 {
-    //num2
-    public class Address
-    {
-        public string label { get; set; }
-        public string address { get; set; }
-        public string city { get; set; }
-    }
 
-    public class Phone
+    public class Result
     {
-        public string label { get; set; }
-        public string phone { get; set; }
-    }
-
-    public class Department
-    {
-        public string name { get; set; }
-    }
-
-    public class Position
-    {
-        public string name { get; set; }
-    }
-
-    public class RootObject2
-    {
+        public double popularity { get; set; }
         public int id { get; set; }
-        public string avatar_url { get; set; }
-        public string employee_id { get; set; }
-        public string first_name { get; set; }
-        public string last_name { get; set; }
-        public string email { get; set; }
-        public string username { get; set; }
-        public string birthday { get; set; }
-        public List<Address> addresses { get; set; }
-        public List<Phone> phones { get; set; }
-        public List<string> presence_list { get; set; }
-        public int salary { get; set; }
-        public Department department { get; set; }
-        public Position position { get; set; }
-    }
-
-    //num3
-    public class Geo
-    {
-        public string lat { get; set; }
-        public string lng { get; set; }
-    }
-
-    public class Address3
-    {
-        public string street { get; set; }
-        public string suite { get; set; }
-        public string city { get; set; }
-        public string zipcode { get; set; }
-        public Geo geo { get; set; }
-    }
-
-    public class Company
-    {
-        public string name { get; set; }
-        public string catchPhrase { get; set; }
-        public string bs { get; set; }
-    }
-
-    public class User
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string username { get; set; }
-        public string email { get; set; }
-        public Address3 address { get; set; }
-        public string phone { get; set; }
-        public string website { get; set; }
-        public Company company { get; set; }
-    }
-
-    public class RootObject3
-    {
-        public int userId { get; set; }
-        public int id { get; set; }
+        public bool video { get; set; }
+        public int vote_count { get; set; }
+        public double vote_average { get; set; }
         public string title { get; set; }
-        public string body { get; set; }
-        public User user { get; set; }
+        public string release_date { get; set; }
+        public string original_language { get; set; }
+        public string original_title { get; set; }
+        public List<int> genre_ids { get; set; }
+        public string backdrop_path { get; set; }
+        public bool adult { get; set; }
+        public string overview { get; set; }
+        public string poster_path { get; set; }
     }
+
+    public class RootObject4
+    {
+        public int page { get; set; }
+        public int total_results { get; set; }
+        public int total_pages { get; set; }
+        public List<Result> results { get; set; }
+    }
+
 
     class Program
     {
         public static async Task Main(string[] args)
         {
 
-            //var res = await GetUser();
-            //Console.WriteLine(String.Join(" ", res));
-            //foreach (var X in res)
-            //{
-            //    Console.WriteLine(X.Name);
-            //    Console.WriteLine(X.Id);
+            NomerDua();
 
-            //}
-            //var res2 = await GetPosts();
-            //Console.WriteLine(res2);
-            //var scraper = new BlogScraper();
-            //await scraper.StartAsync();
 
+            //num3
+            //var numTree = await Join();
+            //var numTreeFile = JsonConvert.SerializeObject(numTree);
+            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num3.json", numTreeFile);
+
+            //num4
+            var numFourA = await movieIndonesia();
+            var numFourAFile = JsonConvert.SerializeObject(numFourA);
+            File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4A.json", numFourAFile);
+            var numFourB = await movieKeanu();
+            var numFourBFile = JsonConvert.SerializeObject(numFourB);
+            File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4B.json", numFourBFile);
+            var numFourC = await movieRobertHolland();
+            var numFourCFile = JsonConvert.SerializeObject(numFourC);
+            File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4C.json", numFourCFile);
+            var numFourD = await movie2016();
+            var numFourDFile = JsonConvert.SerializeObject(numFourD);
+            File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4D.json", numFourDFile);
+
+        }
+        static async void NomerDua()
+        {
             var numTwo = await Fetch();
             Console.WriteLine("employees who have salary more than Rp15.000.000 :");
             List<string> sal = new List<string>();
             foreach (var X in numTwo)
             {
-                if(X.salary>15000000)
+                if (X.salary > 15000000)
                 {
                     sal.Add($"{X.first_name} {X.last_name}");
                 }
             }
             Console.WriteLine(String.Join(", ", sal));
             Console.WriteLine();
-            
+
             Console.WriteLine("employees who live in jakara :");
             List<string> jkt48 = new List<string>();
             foreach (var X in numTwo)
             {
-                foreach(var Y in X.addresses)
+                foreach (var Y in X.addresses)
                 {
-                    if(Y.city== "DKI Jakarta")
+                    if (Y.city == "DKI Jakarta")
                     {
                         jkt48.Add($"{X.first_name} {X.last_name}");
                     }
@@ -145,7 +100,7 @@ namespace HTTP_Test
             List<string> Mar = new List<string>();
             foreach (var X in numTwo)
             {
-                if ((X.birthday).Substring(5,2)=="03")
+                if ((X.birthday).Substring(5, 2) == "03")
                 {
                     Mar.Add($"{X.first_name} {X.last_name}");
                 }
@@ -157,7 +112,7 @@ namespace HTTP_Test
             List<string> RnD = new List<string>();
             foreach (var X in numTwo)
             {
-                if(X.department.name== "Research and development")
+                if (X.department.name == "Research and development")
                 {
                     RnD.Add($"{X.first_name} {X.last_name}");
                 }
@@ -167,23 +122,26 @@ namespace HTTP_Test
 
             Console.WriteLine("employee absences in October 2019 :");
             List<int> Absen = new List<int>();
+            List<string> Name = new List<string>();
             foreach (var X in numTwo)
             {
                 int count = 0;
-                foreach(var Y in X.presence_list)
+                foreach (var Y in X.presence_list)
                 {
-                    if(Y.Substring(5,2)=="10")
+                    if (Y.Substring(5, 2) == "10")
                     {
                         count++;
                     }
-                    
+
                 }
                 Absen.Add(count);
-                
+                Name.Add($"{X.first_name} {X.last_name}");
             }
+            var Names = Name.Distinct();
+
+            Console.WriteLine(String.Join(", ", Names));
             Console.WriteLine(String.Join(", ", Absen));
         }
-
         public static async Task<List<RootObject2>> Fetch()
         {
 
@@ -196,18 +154,19 @@ namespace HTTP_Test
             return fet;
         }
 
+
         public static async Task<List<RootObject3>> Join()
         {
 
             var client = new HttpClient();
 
             var post = await client.GetStringAsync("https://jsonplaceholder.typicode.com/posts");
-
             var joPost = JsonConvert.DeserializeObject<List<RootObject3>>(post);
 
             var user = await client.GetStringAsync("https://jsonplaceholder.typicode.com/users");
-
             var joUser = JsonConvert.DeserializeObject<List<User>>(user);
+
+            var result = new List<RootObject3>();
 
             foreach(var X in joPost)
             {
@@ -216,79 +175,127 @@ namespace HTTP_Test
                 {
                     if (X.userId == Y.id)
                     {
-                        //masukinnya gimana
-                    }
+                        result.Add(new RootObject3
+                        {
+                            userId = X.userId,
+                            id = X.id,
+                            title = X.title,
+                            body = X.body,
+                            user = new User
+                            {
+                                id = Y.id,
+                                name = Y.name,
+                                username = Y.username,
+                                email = Y.email,
+                                address = new Address3
+                                {
+                                    street = Y.address.street,
+                                    suite = Y.address.suite,
+                                    city = Y.address.city,
+                                    zipcode = Y.address.zipcode,
+                                    geo = new Geo
+                                    {
+                                        lat = Y.address.geo.lat,
+                                        lng = Y.address.geo.lng
+                                    }
+                                },
+                                phone = Y.phone,
+                                website = Y.website,
+                                company = new Company
+                                {
+                                    name = Y.company.name,
+                                    catchPhrase = Y.company.catchPhrase,
+                                    bs = Y.company.bs
+                                }
+                            }
+                        });
+                    }   
                 }
                 
             }
-
-            return joPost;
-        }
-
-        public static async Task<List<User>> GetUser()
-        {
-
-            var client = new HttpClient();
-
-            var result = await client.GetStringAsync("https://jsonplaceholder.typicode.com/users");
-
-            var user = JsonConvert.DeserializeObject<List<User>>(result);
-            return user;
-        }
-
-        public static async Task<string> GetPosts()
-        {
-            var client = new HttpClient();
-
-            var result = await client.GetStringAsync("https://jsonplaceholder.typicode.com/posts");
 
             return result;
         }
 
 
-
-
-    }
-
-    //public class User
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //}
-
-    class Post
-    {
-        public int Id { get; set; }
-        public int Tittle { get; set; }
-        public string body { get; set; }
-
-    }
-    class BlogScraper : WebScraper
-    {
-        public override void Init()
+        public static async Task<string> movieIndonesia()
         {
-            this.LoggingLevel = WebScraper.LogLevel.All;
-            this.Request("https://blog.scrapinghub.com", Parse);
-        }
-        public override void Parse(Response response)
-        {
-            //foreach (var title_link in response.Css("h2.entry-title a"))
-            //{
-            //    string strTitle = title_link.TextContentClean;
-            //    Scrape(new ScrapedData() { { "Title", strTitle } });
-            //}
-            foreach (var X in response.Css("span.date"))
+            var client = new HttpClient();
+            var resource = await client.GetStringAsync("https://api.themoviedb.org/3/discover/movie?api_key=8cd7fddc5897bc4305410d8af106f7d0&language=en-US&sort_by=popularity.desc&include_video=false&with_original_language=id");
+
+            var listTitle = new List<string>();
+            var filmIndonesia = JsonConvert.DeserializeObject<RootObject4>(resource);
+
+            foreach (var X in filmIndonesia.results)
             {
-                string tit = X.Css("a[href]")[0].Attributes["href"];
-                Console.WriteLine(tit);
+                listTitle.Add(X.title);
             }
 
-            //if (response.CssExists("div.prev-post > a[href]"))
-            //{
-            //    var next_page = response.Css("div.prev-post > a[href]")[0].Attributes["href"];
-            //    this.Request(next_page, Parse);
-            //}
+            return String.Join(", ", listTitle);
 
         }
+
+        public static async Task<string> movieKeanu()
+        {
+            var client = new HttpClient();
+            var resource = await client.GetStringAsync("https://api.themoviedb.org/3/discover/movie?api_key=8cd7fddc5897bc4305410d8af106f7d0&with_people=6384&sort_by=popularity.desc");
+
+            var listTitle = new List<string>();
+            var filmKeanu = JsonConvert.DeserializeObject<RootObject4>(resource);
+
+            foreach (var X in filmKeanu.results)
+            {
+                listTitle.Add(X.title);
+            }
+
+            return String.Join(", ", listTitle);
+
+        }
+
+        public static async Task<string> movieRobertHolland()
+        {
+            var client = new HttpClient();
+            var resource = await client.GetStringAsync("https://api.themoviedb.org/3/discover/movie?api_key=8cd7fddc5897bc4305410d8af106f7d0&with_people=3223,1136406&sort_by=popularity.desc");
+
+            var listTitle = new List<string>();
+
+            var filmRobertHolland = JsonConvert.DeserializeObject<RootObject4>(resource);
+
+            foreach (var X in filmRobertHolland.results)
+            {
+                listTitle.Add(X.title);
+            }
+
+            return String.Join(", ", listTitle);
+
+
+        }
+
+        public static async Task<string> movie2016()
+        {
+            var client = new HttpClient();
+            var resource = await client.GetStringAsync("https://api.themoviedb.org/3/discover/movie?api_key=8cd7fddc5897bc4305410d8af106f7d0&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&year=2016&vote_average.gte=7.5");
+
+            var listTitle = new List<string>();
+
+            var filmRobertHolland = JsonConvert.DeserializeObject<RootObject4>(resource);
+
+            foreach (var X in filmRobertHolland.results)
+            {
+                listTitle.Add(X.title);
+            }
+
+            return String.Join(", ", listTitle);
+
+
+        }
+
+
+
+
+
     }
+
+    
+    
 }
