@@ -15,25 +15,22 @@ namespace HTTP_Test
 
         public override void Parse(Response response)
         {
-            foreach (var titleLink in response.Css("ul.slides > li > a"))
+            foreach (var X in response.Css("ul.slides > li > a"))
             {
-                string link = titleLink.Attributes["href"];
-                this.Request(link, Parse2);
+                string url = X.Attributes["href"];
+                this.Request(url, Parse2);
           
             }
         }
         public void Parse2(Response response)
         {
-            string title = response.Css("div.movie-info-title").First().InnerText.Replace("\t", "");
-            Console.WriteLine(title);
+
+            Console.WriteLine(response.Css("div.movie-info-title").First().InnerText.Replace("\t", ""));
             foreach (var X in response.Css("div.movie-add-info > ul"))
             {
-                string info = X.InnerText.Replace("\t", "");
-                Console.WriteLine(info);
+                Console.WriteLine(X.InnerText.Replace("\t", ""));
             }
-            string synopsis = response.Css("div.movie-synopsis").First().InnerText.Replace("\t", "");
-
-            Console.WriteLine(synopsis);
+            Console.WriteLine(response.Css("div.movie-synopsis").First().InnerText.Replace("\t", ""));
         }
     }
 }

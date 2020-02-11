@@ -16,16 +16,14 @@ namespace HTTP_Test
             }
 
             public override void Parse(Response response)
-            {
-                
+            { 
                 foreach (var X in response.Css("a.headline__thumb__link"))
                 {
                     Console.WriteLine();
-                    Console.WriteLine(X.Attributes["href"]);
-                    Console.WriteLine(X.InnerTextClean);
+                    Console.WriteLine(X.Attributes["href"]); //url
+                    Console.WriteLine(X.InnerTextClean); //isinya, judul
                     Console.WriteLine();
                 }
-                
             }
         }
     

@@ -18,46 +18,10 @@ namespace HTTP_Test
         
         public static async Task Main(string[] args)
         {
-
+            //num1
             //var num1A = await Fethcer.Get("https://httpbin.org/get");
             //Fethcer.Delete("https://httpbin.org/delete");
 
-
-            //NomerDua();
-
-
-            //num3
-            //var numTree = await Join();
-            //var numTreeFile = JsonConvert.SerializeObject(numTree);
-            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num3.json", numTreeFile);
-
-            //num4
-            //var numFourA = await movieIndonesia();
-            //var numFourAFile = JsonConvert.SerializeObject(numFourA);
-            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4A.json", numFourAFile);
-            //var numFourB = await movieKeanu();
-            //var numFourBFile = JsonConvert.SerializeObject(numFourB);
-            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4B.json", numFourBFile);
-            //var numFourC = await movieRobertHolland();
-            //var numFourCFile = JsonConvert.SerializeObject(numFourC);
-            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4C.json", numFourCFile);
-            //var numFourD = await movie2016();
-            //var numFourDFile = JsonConvert.SerializeObject(numFourD);
-            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4D.json", numFourDFile);
-
-            //num5
-            var Num5 = new Kompas.num5();
-            await Num5.StartAsync();
-
-            //num6
-            //var Num6 = new num6();
-            //await Num6.StartAsync();
-        }
-
-
-
-        static async void NomerDua()
-        {
             var numTwo = await Fetch();
             Console.WriteLine("employees who have salary more than Rp15.000.000 :");
             List<string> sal = new List<string>();
@@ -85,8 +49,6 @@ namespace HTTP_Test
             }
             var jkt96 = jkt48.Distinct();
             Console.WriteLine(String.Join(", ", jkt96));
-            Console.WriteLine();
-
             Console.WriteLine("employees whos birthday on March :");
             List<string> Mar = new List<string>();
             foreach (var X in numTwo)
@@ -132,7 +94,42 @@ namespace HTTP_Test
 
             Console.WriteLine(String.Join(", ", Names));
             Console.WriteLine(String.Join(", ", Absen));
+
+
+
+            //num3
+            //var numTree = await Join();
+            //var numTreeFile = JsonConvert.SerializeObject(numTree);
+            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num3.json", numTreeFile);
+
+            //num4
+            //var numFourA = await movieIndonesia();
+            //var numFourAFile = JsonConvert.SerializeObject(numFourA);
+            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4A.json", numFourAFile);
+            //var numFourB = await movieKeanu();
+            //var numFourBFile = JsonConvert.SerializeObject(numFourB);
+            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4B.json", numFourBFile);
+            //var numFourC = await movieRobertHolland();
+            //var numFourCFile = JsonConvert.SerializeObject(numFourC);
+            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4C.json", numFourCFile);
+            //var numFourD = await movie2016();
+            //var numFourDFile = JsonConvert.SerializeObject(numFourD);
+            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4D.json", numFourDFile);
+
+            //num5
+            //var Num5 = new Kompas.num5();
+            //await Num5.StartAsync();
+
+            //num6
+            //var Num6 = new num6();
+            //await Num6.StartAsync();
         }
+
+
+
+       
+           
+        
         public static async Task<List<RootObject2>> Fetch()
         {
 
@@ -209,7 +206,7 @@ namespace HTTP_Test
         public static async Task<string> movieIndonesia()
         {
             var client = new HttpClient();
-            var resource = await client.GetStringAsync("https://api.themoviedb.org/3/discover/movie?api_key=8cd7fddc5897bc4305410d8af106f7d0&language=en-US&sort_by=popularity.desc&include_video=false&with_original_language=id");
+            var resource = await client.GetStringAsync("https://api.themoviedb.org/3/discover/movie?api_key=8cd7fddc5897bc4305410d8af106f7d0&language=en-US&sort_by=popularity.desc&with_original_language=id");
 
             var listTitle = new List<string>();
             var filmIndonesia = JsonConvert.DeserializeObject<RootObject4>(resource);
