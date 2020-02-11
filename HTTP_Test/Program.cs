@@ -6,65 +6,12 @@ using Newtonsoft.Json;
 using IronWebScraper;
 using System.Linq;
 using System.IO;
-using IronWebScraper;
+
 
 
 
 namespace HTTP_Test
 {
-    public class Args
-    {
-
-    }
-
-    public class Headers
-    {
-        public string Accept { get; set; }
-        public string Accept_Encoding { get; set; }
-        public string Accept_Language { get; set; }
-        public string Host { get; set; }
-        public string Sec_Fetch_Mode { get; set; }
-        public string Sec_Fetch_Site { get; set; }
-        public string Upgrade_Insecure_Requests { get; set; }
-        public string User_Agent { get; set; }
-        public string X_Amzn_Trace_Id { get; set; }
-    }
-
-    public class RootObject
-    {
-        public Args args { get; set; }
-        public Headers headers { get; set; }
-        public string origin { get; set; }
-        public string url { get; set; }
-    }
-
-    class Fethcer
-    {
-        //static HttpClient client = new HttpClient();
-
-        //public static async Task<List<RootObject>> Get(string url)
-        //{
-
-
-        //    var result = await client.GetStringAsync(url);
-
-        //    var get = JsonConvert.DeserializeObject<List<RootObject>>(result);
-
-        //    return get;
-        //}
-
-        //public static async Task<List<RootObject>> Delete(string url)
-        //{
-
-
-        //    var result = await client.GetStringAsync(url);
-
-        //    var del = JsonConvert.DeserializeObject<List<RootObject>>(result);
-
-        //    return del;
-        //}
-    }
-
 
     class Program 
     {
@@ -73,7 +20,8 @@ namespace HTTP_Test
         {
 
             //var num1A = await Fethcer.Get("https://httpbin.org/get");
-            //var num1B = await Fethcer.Delete("https://httpbin.org/delete");
+            //Fethcer.Delete("https://httpbin.org/delete");
+
 
             //NomerDua();
 
@@ -84,23 +32,26 @@ namespace HTTP_Test
             //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num3.json", numTreeFile);
 
             //num4
-            var numFourA = await movieIndonesia();
-            var numFourAFile = JsonConvert.SerializeObject(numFourA);
-            File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4A.json", numFourAFile);
-            var numFourB = await movieKeanu();
-            var numFourBFile = JsonConvert.SerializeObject(numFourB);
-            File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4B.json", numFourBFile);
-            var numFourC = await movieRobertHolland();
-            var numFourCFile = JsonConvert.SerializeObject(numFourC);
-            File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4C.json", numFourCFile);
-            var numFourD = await movie2016();
-            var numFourDFile = JsonConvert.SerializeObject(numFourD);
-            File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4D.json", numFourDFile);
+            //var numFourA = await movieIndonesia();
+            //var numFourAFile = JsonConvert.SerializeObject(numFourA);
+            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4A.json", numFourAFile);
+            //var numFourB = await movieKeanu();
+            //var numFourBFile = JsonConvert.SerializeObject(numFourB);
+            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4B.json", numFourBFile);
+            //var numFourC = await movieRobertHolland();
+            //var numFourCFile = JsonConvert.SerializeObject(numFourC);
+            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4C.json", numFourCFile);
+            //var numFourD = await movie2016();
+            //var numFourDFile = JsonConvert.SerializeObject(numFourD);
+            //File.WriteAllText(@"//Users/user/Projects/HTTP_Test/HTTP_Test/num4D.json", numFourDFile);
 
             //num5
-            var Num5 = new Kompas.BlogScrapper();
+            var Num5 = new Kompas.num5();
             await Num5.StartAsync();
 
+            //num6
+            //var Num6 = new num6();
+            //await Num6.StartAsync();
         }
 
 
